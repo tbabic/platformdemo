@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Pretraga osoba</h1>
+	</div>
+	
+	<form action="/persons/search" method="get">
+		<div class="row">
+			<div class="col-sm-2">Ime:</div>
+			<div class="col-sm-3"><input name="firstName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Prezime:</div>
+			<div class="col-sm-3"><input name="lastName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">MBG ili broj putovnice:</div>
+			<div class="col-sm-3"><input name="idNumber" type="text" class="form-control"></div>
+		</div>
+		
+		<button type="submit" class="btn btn-default btn-search">Traži</button>
+	</form>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Datum rođenja</th>
+				<th>Indikator</th>
+				<th>Događaj</th>
+				<th>Odaberi</th>
+			</tr>
+		</thead>
+		<tbody id="table-body-id">
+		</tbody>
+	</table>
+
+<script>
+	$('form').on('submit', function(event) {
+		event.preventDefault();
+		$("#table-body-id").empty();
+		let formData = $(event.target).serialize();
+		let serverUrl = $(event.target).attr('action');
+		$.ajax({
+			type: "GET",
+			url: serverUrl,
+			data: formData,
+			success: function(result){
+				let row = '<tr><td class="firstname"/><td class="lastname"/><td class="birthdate"/><td class="indicator"/><td class="event"/><td><a class="btn btn-default btn-select" href="#" role="button">Pregledaj</a></td></tr>';
+				let baseUrl = window.location.origin;
+				let persons = result;
+				for (let i = 0; i < persons.length; i++) {
+					let rowObject = $(row);
+					rowObject.find(".firstname").text(persons[i].firstName);
+					rowObject.find(".lastname").text(persons[i].lastName);
+					rowObject.find(".birthdate").text(dateString(persons[i].birthDate));
+					rowObject.find(".indicator").text(persons[i].indicator);
+					rowObject.find(".event").text(persons[i].eventExists ? "DA" : "NE");
+					rowObject.find(".btn-select").attr('href', baseUrl + "/pregled/osoba/" + persons[i].id);
+					$("#table-body-id").append(rowObject);
+				}
+				
+			},
+			error: function() {console.log("error")},
+			dataType: "json",
+			contentType : "application/json"
+		});
+	});
+</script>
+</div>
+
+</body>
+
+
+
+</html>

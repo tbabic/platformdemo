@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div th:fragment="event-fragment" class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Unos događaja</h1>
+	</div>
+	<div th:fragment="insert-event">
+	<form  id="save-event-form" action="/events" method="post">
+		<input name="id" type="hidden" class="form-control">
+	
+		<div class="row">
+			<div class="col-sm-2">Mjesto:</div>
+			<div class="col-sm-3"><input name="location" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Naziv naseljenog mjesta:</div>
+			<div class="col-sm-3"><input name="locationName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Ustrojstvena jedinica:</div>
+			<div class="col-sm-3"><input name="organizationalUnit" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Broj događaja:</div>
+			<div class="col-sm-3"><input name="number" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Datum:</div>
+			<div class="col-sm-3"><input name="date" type="date" class="form-control" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Tip dolaska:</div>
+			<div class="col-sm-3"><select name="arrivalType" class="form-control">
+				<option value="IN">Ulaz</option>
+				<option value="OUT">Izlaz</option>
+			</select></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">GPS x:</div>
+			<div class="col-sm-3"><input name="gpsLongitude" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">GPS y:</div>
+			<div class="col-sm-3"><input name="gpsLatitude" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Tip protupravnog djela:</div>
+			<div class="col-sm-3"><input name="criminalActType" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Adresa:</div>
+			<div class="col-sm-3"><textarea name="address" class="form-control"></textarea></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Opis:</div>
+			<div class="col-sm-3"><textarea name="description" class="form-control"></textarea></div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-default btn-insert"
+					data-toggle="modal" data-target="#insert-person-modal">
+					Unesi osobu
+				</button>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" id="find-event-person-btn" class="btn btn-default btn-search"
+					data-toggle="modal" data-target="#find-person-modal">
+					Pronađi osobu:
+				</button>
+			</div>
+		</div>
+		
+		<div id="event-persons" class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Ime</th>
+						<th>Prezime</th>
+						<th>Datum rođenja</th>
+						<th>MBG</th>
+						<th>Obriši</th>
+					</tr>
+				</thead>
+				<tbody id="event-persons-body">
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-default btn-insert"
+					data-toggle="modal" data-target="#insert-vehicle-modal">
+					Unesi vozilo
+				</button>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-default btn-search"
+					data-toggle="modal" data-target="#find-vehicle-modal" id="find-weapon-btn">
+					Pronađi vozilo
+				</button>
+			</div>
+		</div>
+		
+		<div id="event-vehicles" class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Registarska oznaka</th>
+						<th>Proizvođač</th>
+						<th>Model</th>
+						<th>Obriši</th>
+					</tr>
+				</thead>
+				<tbody id="event-vehicles-body">
+				</tbody>
+			</table>
+		
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-default btn-insert"
+					data-toggle="modal" data-target="#insert-weapon-modal">
+					Unesi oružje
+				</button>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-default btn-search"
+					data-toggle="modal" data-target="#find-weapon-modal" id="find-weapon-btn">
+					Pronađi oružje
+				</button>
+			</div>
+		</div>
+		
+		<div id="event-weapons" class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Serijski broj</th>
+						<th>Proizvođač</th>
+						<th>Model</th>
+						<th>Obriši</th>
+					</tr>
+				</thead>
+				<tbody id="event-weapons-body">
+				</tbody>
+			</table>
+		</div>
+		
+		<button id="save-event" type="button" class="btn btn-default btn-save">Spremi</button>
+ 		
+ 		
+ 		<div class="btn-print-group" style="display:none">
+			<a class="btn btn-default btn-print event-print-form" download="Obrazac.docx" href="#">Word obrazac</a>
+			<a class="btn btn-default btn-print event-print-zkp" download="Zkp.docx" href="#">Word ZKP</a>
+			<a class="btn btn-default btn-print event-print-zop" download="Zop.docx" href="#">Word ZOP</a>
+			<a class="btn btn-default btn-print event-print-crim" download="Krim.docx" href="#">Word krivična prijava</a>
+		</div>
+		
+
+	</form>
+	
+	
+	
+	<div id="insert-person-modal" class="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"><div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modalLabel">Unesi osobu</h4>
+			</div>
+			<div class="modal-body">					
+				<div th:insert="~{insert/person :: insert-person}"></div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+						
+		</div></div>
+	</div>
+	
+	<div id="insert-vehicle-modal" class="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"><div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modalLabel">Unesi vozilo</h4>
+			</div>
+			<div class="modal-body">					
+				<div th:insert="~{insert/vehicle :: insert-vehicle}"></div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+						
+		</div></div>
+	</div>
+	
+	<div id="insert-weapon-modal" class="modal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"><div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modalLabel">Unesi oružje</h4>
+			</div>
+			<div class="modal-body">					
+				<div th:insert="~{insert/weapon :: insert-weapon}"></div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+						
+		</div></div>
+	</div>
+	
+	<div id="find-event-person" th:insert="~{fragments :: find-person-modal}"></div>
+	
+	<div id="find-event-vehicle" th:insert="~{fragments :: find-vehicle-modal}"></div>
+	
+	<div id="find-event-weapon" th:insert="~{fragments :: find-weapon-modal}"></div>
+	
+	</div>
+	
+<script th:src="@{~/js/controllers/eventController.js}"></script>	
+	
+
+
+</div>
+
+</body>
+</html>

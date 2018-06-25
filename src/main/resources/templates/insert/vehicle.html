@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div th:fragment="vehicle-fragment" class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Unos vozila</h1>
+	</div>
+	
+		
+	<form th:fragment="insert-vehicle" id="save-vehicle-form" action="/vehicles" method="post">
+		<input name="id" type="hidden" class="form-control">
+		<div class="row">
+			<div class="col-sm-2">Proizvođač:</div>
+			<div class="col-sm-3"><input name="manufacturer" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Model:</div>
+			<div class="col-sm-3"><input name="model" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Broj šasije:</div>
+			<div class="col-sm-3"><input name="idNumber" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Registarska oznaka:</div>
+			<div class="col-sm-3"><input name="registrationNumber" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Država registracije:</div>
+			<div class="col-sm-3"><input name="registrationCountry" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Indikator:</div>
+			<div class="col-sm-3"><textarea name="indicator" class="form-control"></textarea></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<button type="button" id="find-vehicle-owner-btn" class="btn btn-default btn-search"
+					data-toggle="modal" data-target="#find-person-modal">
+					Pronađi vlasnika:
+				</button>
+			</div>
+		</div>
+		
+		
+			<input id="vehicleOwnerId" name="ownerId" type="number" style="display:none"/>
+			
+			<div class="row">
+				<div class="col-sm-2">Ime:</div>
+				<div class="col-sm-3"><input disabled id="vehicleOwnerfirstName" type="text" class="form-control"/></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">Prezime:</div>
+				<div class="col-sm-3"><input disabled id="vehicleOwnerLastName" type="text" class="form-control"/></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-2">MBG:</div>
+				<div class="col-sm-3"><input disabled id="vehicleOwnerMbg" type="text" class="form-control"/></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2">Datum rođenja:</div>
+				<div class="col-sm-3"><input disabled id="vehicleOwnerBirthDate" type="date" class="form-control"/></div>
+			</div>
+					
+				
+			<button id="save-vehicle-btn" type="button" class="btn btn-default btn-save">Spremi</button>
+			<div class="row"><div id="result-id" class="col-sm-12"></div></div>
+	</form>
+	
+	<div th:insert="~{fragments :: find-person-modal}"></div>
+	
+
+
+	
+
+
+<script th:src="@{~/js/controllers/vehicleController.js}"></script>	
+
+</div>
+
+</body>
+
+</html>

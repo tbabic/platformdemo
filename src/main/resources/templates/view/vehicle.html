@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Pregled vozila</h1>
+	</div>
+	<div th:insert="~{insert/vehicle :: insert-vehicle}"></div>
+
+	<div th:insert="~{fragments :: find-person-modal}"></div>
+	
+	<script th:src="@{~/js/controllers/vehicleController.js}"></script>
+	<script>
+		loadSimpleForm('#save-vehicle-form', function(data) {
+			fillOwnerData(data.owner);
+		});
+	</script>
+	
+</div>
+
+</body>
+
+</html>

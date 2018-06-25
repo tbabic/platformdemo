@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Pregled osoba</h1>
+	</div>
+	<div th:insert="~{insert/person :: insert-person}"></div>
+
+	
+	
+	<script th:src="@{~/js/controllers/personController.js}"></script>
+	<script>
+		loadSimpleForm('#save-person-form');
+	</script>
+	
+</div>
+
+</body>
+
+</html>

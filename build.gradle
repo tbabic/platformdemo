@@ -1,0 +1,59 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.bytepoet.undp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+	//compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
+
+	compile("com.h2database:h2"
+
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
+    compile group: 'com.google.guava', name: 'guava', version: '24.1-jre'
+    
+	compile("org.springframework.boot:spring-boot-devtools")
+    
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+	compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad
+	compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.17'
+    
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+	compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    
+    
+    testCompile("junit:junit")
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+bootJar {
+	launchScript()
+}

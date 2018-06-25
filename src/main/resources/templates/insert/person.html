@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div th:fragment="person-fragment" class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Unos osoba</h1>
+	</div>
+	
+	<form id="save-person-form" th:fragment="insert-person" action="/persons" method="post">
+		<input name="id" type="hidden" class="form-control">
+		<div class="row">
+			<div class="col-sm-2">Ime:</div>
+			<div class="col-sm-3"><input name="firstName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Prezime:</div>
+			<div class="col-sm-3"><input name="lastName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Roditelj:</div>
+			<div class="col-sm-3"><input name="parentFirstName" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Datum rođenja:</div>
+			<div class="col-sm-3"><input name="birthDate" type="date" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">MBG:</div>
+			<div class="col-sm-3"><input name="idNumber" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Broj putovnice:</div>
+			<div class="col-sm-3"><input name="passportId" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Mjesto stanovanja:</div>
+			<div class="col-sm-3"><input name="city" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Ulica:</div>
+			<div class="col-sm-3"><input name="street" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Broj:</div>
+			<div class="col-sm-3"><input name="streetNumber" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Opčina:</div>
+			<div class="col-sm-3"><input name="county" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Spol:</div>
+			<div class="col-sm-3"><select name="gender" class="form-control" id="sel1">
+		        <option value="MALE">Muško</option>
+		        <option value="FEMALE">Žensko</option>
+		      </select></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Državljanstvo:</div>
+			<div class="col-sm-3"><input name="citizenship" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Mjesto rođenja:</div>
+			<div class="col-sm-3"><input name="birthPlace" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Indikator:</div>
+			<div class="col-sm-3"><textarea name="indicator" class="form-control"></textarea></div>
+		</div>
+
+		
+		
+		<button id="save-person-btn" type="button" class="btn btn-default btn-save">Spremi</button>
+		<div class="row"><div id="result-id" class="col-sm-12"></div></div>
+		
+	</form>
+	
+
+
+<script th:src="@{~/js/controllers/personController.js}"></script>	
+</div>
+
+</body>
+</html>

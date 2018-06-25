@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div th:fragment="weapon-fragment" class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Unos oružja</h1>
+	</div>
+	
+		
+	<form th:fragment="insert-weapon" id="save-weapon-form" action="/weapons" method="post">
+		<input name="id" type="hidden" class="form-control">
+		<div class="row">
+			<div class="col-sm-2">Proizvođač:</div>
+			<div class="col-sm-3"><input name="manufacturer" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Naziv:</div>
+			<div class="col-sm-3"><input name="model" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Serijski broj:</div>
+			<div class="col-sm-3"><input name="idNumber" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Tip:</div>
+			<div class="col-sm-3"><input name="type" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Vrsta:</div>
+			<div class="col-sm-3"><input name="weaponClass" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Zemlja porijekla:</div>
+			<div class="col-sm-3"><input name="originCountry" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Kalibar:</div>
+			<div class="col-sm-3"><input name="calibar" type="text" class="form-control"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Druga identifikacijska obilježja:</div>
+			<div class="col-sm-3"><textarea name="otherIdAttributes" class="form-control"></textarea></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Indikator:</div>
+			<div class="col-sm-3"><textarea name="indicator" class="form-control"></textarea></div>
+		</div>
+		<div class="row">
+		<div class="col-sm-2">
+			<button type="button" id="find-weapon-owner-btn" class="btn btn-default btn-search"
+				data-toggle="modal" data-target="#find-person-modal">
+				Pronađi vlasnika:
+			</button>
+			</div>
+		</div>
+		
+		<input id="weaponOwnerId" name="ownerId" type="number" style="display:none"/>
+		
+		<div class="row">
+			<div class="col-sm-2">Ime:</div>
+			<div class="col-sm-3"><input disabled id="weaponOwnerFirstName" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Prezime:</div>
+			<div class="col-sm-3"><input disabled id="weaponOwnerLastName" type="text" class="form-control"/></div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-2">MBG:</div>
+			<div class="col-sm-3"><input disabled id="weaponOwnerMbg" type="text" class="form-control"/></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Datum rođenja:</div>
+			<div class="col-sm-3"><input disabled id="weaponOwnerBirthDate" type="text" class="form-control"/></div>
+		</div>
+				
+			
+		<button id="save-weapon-btn" type="button" class="btn btn-default btn-save">Spremi</button>
+		<div class="row"><div id="result-id" class="col-sm-12"></div></div>
+		
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	<div th:insert="~{fragments :: find-person-modal}"></div>
+	
+
+
+	
+
+<script th:src="@{~/js/controllers/weaponController.js}"></script>	
+</div>
+
+</body>
+
+</html>

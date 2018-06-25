@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head th:fragment="head">
+<title>UNDP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" th:href="@{~/css/bootstrap.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{~/css/main.css}"/>
+
+
+
+</head>
+<body>
+
+	<div th:fragment="header">
+	<script th:src="@{~/js/jquery-3.3.1.js}"></script>
+	<script th:src="@{~/js/bootstrap.js}"></script>
+	<script th:src="@{~/js/main.js}"></script>
+		
+	<nav class="navbar navbar-default custom-navbar">
+<!-- 	  <div class="logo-german"><img class="logo" th:src="@{~/imgs/german.jpg}"/></div> -->
+<!-- 	  <div class="logo-undp"><img class="logo" th:src="@{~/imgs/undp.jpg}"/></div> -->
+<!-- 	  <div class="logo-border"><img class="logo" th:src="@{~/imgs/granicna.jpg}"/></div> -->
+	  
+      <ul class="nav navbar-nav">
+        <li><a href="/">Početna</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Unos <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/unos/dogadjaji">Događaji</a></li>
+            <li><a href="/unos/osobe">Osobe</a></li>
+            <li><a href="/unos/vozila">Vozila</a></li>
+            <li><a href="/unos/oruzja">Oružja</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pretraga <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/pretraga/dogadjaji">Događaji</a></li>
+            <li><a href="/pretraga/osobe">Osobe</a></li>
+            <li><a href="/pretraga/vozila">Vozila</a></li>
+            <li><a href="/pretraga/oruzja">Oružja</a></li>
+          </ul>
+        </li>
+      </ul>
+	</nav>	
+	</div>
+
+</body>
+</html>

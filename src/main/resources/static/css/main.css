@@ -1,0 +1,74 @@
+.custom-navbar {
+	background-color: #337ab7;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+
+.btn-default {
+	color: #FFF;
+    background-color: #21405a;
+}
+
+.btn-delete {
+	color: #FFF;
+    background-color: red;
+}
+
+.branding {
+	background-image: url(/imgs/top-bar.jpg);
+}
+
+/* .navbar { */
+/* 	position: relative; */
+/*     min-height: 50px; */
+/*     border-radius: 0px; */
+/*     margin-bottom: 0px; */
+/*     border: 0px solid transparent; */
+/* } */
+
+
+.jumbotron {
+	color: #FFF;
+    background-color: #337ab7;
+}
+
+.jumbotron-top {
+	text-align: center;
+	font-size: 5vw !important;
+}
+
+.jumbotron-bottom {
+	text-align: center;
+	font-size: 4.2vw !important;
+}
+
+.btn-index {
+	min-width:100%;
+	text-align: center;
+}
+
+.index-group {
+	font-size:20px;
+	text-align: center;
+}
+
+
+.logo-left {
+	float:left;
+}
+
+.logo-center {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-right {
+	float:right;
+}
+
+.logos{
+	padding-bottom:10px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+	<div class="logos row">
+		<div class="col-sm-4 logo-left">
+	  		<img class="logo-left" th:src="@{~/imgs/german.jpg}" height="75px"/>
+	  	</div>
+	  	<div class="col-sm-4 logo-center">
+	  		<img class="logo-center" th:src="@{~/imgs/granicna.jpg}" height="75px"/>
+	  	</div>
+	  	<div class="col-sm-4 logo-right">
+	  		<img class="logo-right" th:src="@{~/imgs/undp.jpg}" height="75px"/>
+	  	</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-12">
+			<img src="/imgs/top-bar.jpg" width="100%" height="100%"/>
+		</div>
+	</div>
+	
+	<br/>
+	<div class="jumbotron">
+		<h1 class="jumbotron-top">UNDP CIAT PROJEKT</h1>
+		<h1 class="jumbotron-bottom">GRANIČNA POLICIJA BIH</h1>
+
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-5">
+			<div class="index-group">UNOS</div>
+			<div class="row">
+				<div class="col-sm-12"><a class="btn btn-default btn-index" href="/unos/dogadjaji">Događaji</a></div>
+	            <div class="col-sm-12"><a class="btn btn-default btn-index" href="/unos/osobe">Osobe</a></div>
+	            <div class="col-sm-12"><a class="btn btn-default btn-index" href="/unos/vozila">Vozila</a></div>
+	            <div class="col-sm-12"><a class="btn btn-default btn-index" href="/unos/oruzja">Oružja</a></div>
+	        </div>
+		</div>
+		<div class="col-sm-5 col-sm-offset-2">
+			<div class="index-group">PRETRAGA</div>
+			<div class="row">
+				<div class="col-sm-12"><a class="btn btn-default btn-index" href="/pretraga/dogadjaji">Događaji</a></div>
+	            <div class="col-sm-12"><a class="btn btn-default btn-index" href="/pretraga/osobe">Osobe</a></div>
+	            <div class="col-sm-12"><a class="btn btn-default btn-index" href="/pretraga/vozila">Vozila</a></div>
+	           <div class="col-sm-12"><a class="btn btn-default btn-index" href="/pretraga/oruzja">Oružja</a></div>
+	        </div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

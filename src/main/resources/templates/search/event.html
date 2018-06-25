@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="~{header :: head}">
+</head>
+<body>
+<div class="container">
+	<div th:insert="~{header :: header}"></div>
+	
+
+	<div class="page-header">
+		<h1>Pretraga događaja</h1>
+	</div>
+	<form action="/events/search" method="get">
+		<div class="row">
+			<div class="col-sm-2">Datum:</div>
+			<div class="col-sm-3"><input name="date" type="date" class="form-control" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">Tip protupravnog djelas:</div>
+			<div class="col-sm-3"><input name="criminalActType" type="text" class="form-control"></div>
+		</div>
+
+		<button type="submit" class="btn btn-default btn-search">Traži</button>
+	</form>
+	
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Mjesto</th>
+				<th>Tip dolaska</th>
+				<th>Osobe</th>
+				<th>Vozila</th>
+				<th>Oružja</th>
+			</tr>
+		</thead>
+		<tbody id="table-body-id">
+		</tbody>
+	</table>
+
+<script>
+	$('form').on('submit', function(event) {
+		event.preventDefault();
+		$("#table-body-id").empty();
+		let formData = $(event.target).serialize();
+		let serverUrl = $(event.target).attr('action');
+		$.ajax({
+			type: "GET",
+			url: serverUrl,
+			data: formData,
+			success: function(results){
+				let row = '<tr><td class="location"/><td class="arriving-type"/><td class="persons"/><td class="vehicles"/><td class="weapons"/><td><a class="btn btn-default btn-select" href="#" role="button">Pregledaj</a></td></tr>';
+				let rowPerson ='<div class="row"><div class="col-sm-12 inner-row person"/></div>';
+				let rowVehicle ='<div class="row"><div class="col-sm-12 inner-row vehicle"/></div>';
+				let rowWeapon ='<div class="row"><div class="col-sm-12 inner-row weapon"/></div>'
+				let baseUrl = window.location.origin;
+				for (let i = 0; i < results.length; i++) {
+					let rowObject = $(row);
+					rowObject.find(".location").text(results[i].location);
+					rowObject.find(".arriving-type").text(results[i].arrivingType);
+					for (let j = 0; j<results[i].persons.length; j++) {
+						let rowInnerObject = $(rowPerson);
+						rowInnerObject.find(".person").text(results[i].persons[j].firstName + " " + results[i].persons[j].lastName);
+						rowObject.find(".persons").append(rowInnerObject);
+					}
+					for (let j = 0; j<results[i].vehicles.length; j++) {
+						let rowInnerObject = $(rowVehicle);
+						rowInnerObject.find(".vehicle").text(results[i].vehicles[j].registrationNumber + " " + results[i].vehicles[j].model);
+						rowObject.find(".vehicles").append(rowInnerObject);
+					}
+					for (let j = 0; j<results[i].weapons.length; j++) {
+						let rowInnerObject = $(rowWeapon);
+						rowInnerObject.find(".weapon").text(results[i].weapons[j].idNumber + " " + results[i].weapons[j].model);
+						rowObject.find(".weapons").append(rowInnerObject);
+					}
+					
+					rowObject.find(".btn-select").attr('href', baseUrl + "/pregled/dogadjaj/" + results[i].id);
+					$("#table-body-id").append(rowObject);
+				}
+				
+			},
+			error: function() {console.log("error")},
+			dataType: "json",
+			contentType : "application/json"
+		});
+	});
+</script>
+
+
+</div>
+
+</body>
+
+
+
+</html>
