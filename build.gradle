@@ -30,7 +30,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
 	//compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 
-	compile("com.h2database:h2"
+	compile("com.h2database:h2")
 
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
