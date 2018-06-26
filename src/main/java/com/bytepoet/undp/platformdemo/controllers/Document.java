@@ -5,7 +5,7 @@ public enum Document {
 	ZOP("PotvrdaZOP.docx"),
 	ZKP("PotvrdaZKP.docx"),
 	CRIM("KrivicnaPrijava.docx"),
-	FORM("OBRAZAC.docx");
+	FORM("OBRAZAC2.docx");
 	
 	private final String fileName;
 
