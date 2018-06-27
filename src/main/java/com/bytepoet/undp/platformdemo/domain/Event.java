@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 @Entity
 @Cacheable(false)
 public class Event {
@@ -24,6 +27,7 @@ public class Event {
 	private String locationName;
 	private Date date;
 	private String address;
+	@JsonProperty
 	private ArrivingType arrivingType;
 	private String gpsLatitude;
 	private String gpsLongitude;

@@ -226,7 +226,7 @@ public class PrintService {
 				new TextReplacer("<<voziloime>>", vehicleOwner.getFirstName()),
 				new TextReplacer("<<voziloprez>>", vehicleOwner.getLastName()),
 				new TextReplacer("<<vozilombg>>", vehicleOwner.getIdNumber()),
-				new TextReplacer("<<sudionikrod>>", vehicleOwner.getBirthDate()),
+				new TextReplacer("<<vozilorod>>", vehicleOwner.getBirthDate()),
 				new TextReplacer("<<vozilodrzv>>", vehicleOwner.getCitizenship()),
 				new TextReplacer("<<vozilomjesto>>", vehicleOwner.getCity()),
 				new TextReplacer("<<voziloulica>>", vehicleOwner.getStreet()),
@@ -252,10 +252,10 @@ public class PrintService {
 	
 	private String gender(Person person) {
 		if (person.getGender() == Gender.MALE) {
-			return "Mu≈°ko";
+			return "Muöko";
 		}
 		if (person.getGender() == Gender.FEMALE) {
-			return "≈Ωensko";
+			return "éensko";
 		} else {
 			return "Ostalo";
 		}
